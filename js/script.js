@@ -134,3 +134,67 @@
     init(event.target);
   });
 })();
+
+/* ============================================================
+   Mobile sticky bar — reveal on scroll
+
+   The bar stays out of the way until the reader has passed the section named
+   by data-reveal-selector, so it does not cover the opening of the article.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  function initBar(bar) {
+    if (bar.dataset.mdBarReady === 'true') return;
+
+    var selector = bar.dataset.revealSelector;
+    var target;
+    try {
+      target = selector ? document.querySelector(selector) : null;
+    } catch (error) {
+      target = null;
+    }
+    if (!target) return; // no target: leave the bar visible
+
+    bar.dataset.mdBarReady = 'true';
+    bar.setAttribute('data-md-hidden', '');
+
+    var ticking = false;
+
+    // Separate show/hide thresholds. A single threshold makes the bar flicker
+    // when a scroll sits right on it; between the two nothing changes.
+    var HYSTERESIS = 80;
+
+    function update() {
+      ticking = false;
+      var top = target.getBoundingClientRect().top;
+      var fold = window.innerHeight;
+
+      if (top <= fold) {
+        bar.removeAttribute('data-md-hidden');          // section reached
+      } else if (top > fold + HYSTERESIS) {
+        bar.setAttribute('data-md-hidden', '');         // scrolled back above it
+      }
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  }
+
+  function init() {
+    document.querySelectorAll('.md-lp__bar').forEach(initBar);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

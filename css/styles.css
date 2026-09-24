@@ -223,6 +223,21 @@ ul, ol { list-style: none; padding: 0; }
   transition: background-color var(--duration-fast, 0.15s) var(--ease-default, ease);
 }
 
+/* Hidden until the reader passes the section named by data-reveal-selector
+   on the bar (js/script.js). Slides up rather than appearing abruptly. */
+.md-lp__bar {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.md-lp__bar[data-md-hidden] {
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-lp__bar { transition: none; }
+}
+
 .md-lp__bar-cta:hover { background: #611a34; }
 .md-lp__bar-cta:focus-visible { outline: 2px solid var(--md-ink); outline-offset: 2px; }
 
@@ -329,11 +344,11 @@ ul, ol { list-style: none; padding: 0; }
 /* 16 below the H1 on mobile (239:2432 gap 16), 12 on desktop where the
    symptoms sit inside Hero Content's 12 gap (324:2022). */
 .md-lp__pills {
-  margin-top: 4px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 0;
+  /* mobile: 16 above, none below. Desktop restores 0 above / 16 below below. */
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -359,9 +374,7 @@ ul, ol { list-style: none; padding: 0; }
   line-height: var(--md-body-lh);
 }
 
-/* Figma puts 24 between the quote and the image (239:2431 / 324:2032) while
-   the rest of the hero stack uses 16 — the +8 makes up the difference. */
-.md-lp__hero-figure { margin: 8px 0 0; }
+.md-lp__hero-figure { margin: 8px 0 0; } /* mobile; 24 from 768 */
 
 .md-lp__hero-image {
   width: 100%;
@@ -865,9 +878,10 @@ ul, ol { list-style: none; padding: 0; }
   /* .md-lp__inner { padding-top: 32px; } */
 
   .md-lp__hero { gap: 16px; }
-  .md-lp__pills { margin-top: 0; } /* desktop keeps the 12 from hero-head */
+  .md-lp__pills { margin-top: 0; margin-bottom: 16px; } /* desktop unchanged */
 
   /* 768 × 442 in the article column (324:2034); 768 × 491 for the figure (324:2117) */
+  .md-lp__hero-figure { margin-top: 24px; }
   .md-lp__hero-image { height: auto; aspect-ratio: 768 / 442; }
   .md-lp__figure-image { height: auto; aspect-ratio: 768 / 491; }
 
