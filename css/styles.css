@@ -824,7 +824,10 @@ ul, ol { list-style: none; padding: 0; }
 
 .md-lp__review-text {
   color: var(--md-ink);
-  font-family: var(--md-head);
+  /* 'Grotta-Trial' is the name Figma uses (324:2158). No such family is
+     bundled, so Grotta — the licensed release of the same typeface — does
+     the rendering. */
+  font-family: 'Grotta-Trial', var(--md-head);
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
