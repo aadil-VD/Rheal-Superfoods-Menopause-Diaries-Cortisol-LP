@@ -1,0 +1,17 @@
+/* Per-section values, generated from the theme template settings. */
+#md-banner { --md-banner-bg: #004439; --md-banner-color: #fefdf9; }
+#md-hero { --md-pad-top: 24px; --md-pad-bottom: 24px; }
+@media (min-width: 768px) { #md-hero { --md-pad-top: 48px; --md-pad-bottom: 32px; } }
+#md-article-1 { --md-pad-top: 0px; --md-pad-bottom: 24px; }
+@media (min-width: 768px) { #md-article-1 { --md-pad-top: 0px; --md-pad-bottom: 32px; } }
+#md-article-1 [data-md-block="part2"] { margin-top: 32px; }
+@media (min-width: 768px) { #md-article-1 [data-md-block="part2"] { margin-top: 40px; } }
+#md-product { --md-pad-top: 24px; --md-pad-bottom: 24px; --md-band: #e1e6bd; }
+@media (min-width: 768px) { #md-product { --md-pad-top: 32px; --md-pad-bottom: 32px; } }
+#md-article-2 { --md-pad-top: 24px; --md-pad-bottom: 0px; }
+@media (min-width: 768px) { #md-article-2 { --md-pad-top: 32px; --md-pad-bottom: 0px; } }
+#md-article-2 [data-md-block="finalcta"] { margin-top: 8px; --md-block-band: #fcefdf; --md-block-pt: 24px; --md-block-pb: 24px; }
+@media (min-width: 768px) { #md-article-2 [data-md-block="finalcta"] { margin-top: 8px; --md-block-pt: 32px; --md-block-pb: 24px; } }
+#md-footer { background: #004439; padding: 34px clamp(20px, 8.3cqw, 120px) 34px; }
+#md-footer .rlp-ftr__inner { max-width: 760px; }
+@media (max-width: 767px) { #md-footer { padding: 32px 20px 120px; } }

@@ -1,0 +1,1015 @@
+/* ============================================================
+   The Menopause Diaries — standalone build
+   Generated from the Shopify theme: md-lp.css + the lp-footer
+   section styles, with theme settings baked in.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Grotta';
+  src: url('../fonts/Grotta-Bold.woff2') format('woff2'),
+       url('../fonts/Grotta-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grotta';
+  src: url('../fonts/Grotta-Medium.woff2') format('woff2'),
+       url('../fonts/Grotta-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grotta';
+  src: url('../fonts/Grotta-Regular.woff2') format('woff2'),
+       url('../fonts/Grotta-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Grotta';
+  src: url('../fonts/Grotta-Semibold.woff2') format('woff2'),
+       url('../fonts/Grotta-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lost';
+  src: url('../fonts/Lost-Normal.woff2') format('woff2'),
+       url('../fonts/Lost-Normal.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---- reset (from the theme's critical.css) ---- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'Lost', system-ui, -apple-system, sans-serif;
+  line-height: 1.4;
+  color: #004439;
+  background: #fffcf7;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+
+/* theme design tokens the page reads */
+:root {
+  --heading-font: 'Grotta', system-ui, -apple-system, sans-serif;
+  --body-font: 'Lost', system-ui, -apple-system, sans-serif;
+  --duration-fast: 0.15s;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --z-sticky: 300;
+  --z-overlay: 400;
+}
+
+
+/* ============================================================
+   md-lp.css
+   ============================================================ */
+
+/* ============================================================
+   The Menopause Diaries — advertorial landing page
+   Figma: 324:2006 (desktop 1440) / 239:2421 (mobile 375)
+
+   Mobile-first. Type interpolates exactly between the two Figma
+   frames: clamp(<375 value>, calc(<375> + delta * (100vw - 375px)
+   / 1065), <1440 value>) so both frames are pixel-accurate and
+   everything between scales smoothly.
+   ============================================================ */
+
+.md-lp {
+  --md-ink: #004439;
+  --md-accent: #8a2550;
+  --md-accent-tint: rgba(138, 37, 80, 0.1);
+  --md-sage: #e1e6bd;
+  --md-stone: #f6efdf;
+  --md-peach: #fcefdf;
+  --md-paper: #fefdf9;
+  --md-rule: rgba(0, 68, 57, 0.24);
+  --md-rule-soft: rgba(0, 68, 57, 0.2);
+  --md-muted: rgba(0, 68, 57, 0.6);
+
+  --md-head: var(--heading-font, 'Grotta', system-ui, -apple-system, sans-serif);
+  --md-body: var(--body-font, 'Lost', system-ui, -apple-system, sans-serif);
+
+  --md-gutter: 20px;
+  --md-col-gap: 24px;
+
+  /* fluid type — anchored to the 375 and 1440 frames */
+  --md-h1: clamp(33px, calc(33px + 21 * (100vw - 375px) / 1065), 54px);
+  --md-h1-lh: 1.08;
+  --md-h2: clamp(24px, calc(24px + 8 * (100vw - 375px) / 1065), 32px);
+  --md-h2-lh: clamp(32px, calc(32px + 8 * (100vw - 375px) / 1065), 40px);
+  --md-body-size: clamp(16px, calc(16px + 2 * (100vw - 375px) / 1065), 18px);
+  --md-body-lh: clamp(24px, calc(24px + 2 * (100vw - 375px) / 1065), 26px);
+  --md-label: clamp(14px, calc(14px + 2 * (100vw - 375px) / 1065), 16px);
+  --md-quote: clamp(18px, calc(18px + 6 * (100vw - 375px) / 1065), 24px);
+  --md-quote-lh: clamp(24px, calc(24px + 8 * (100vw - 375px) / 1065), 32px);
+  --md-highlight: clamp(18px, calc(18px + 2 * (100vw - 375px) / 1065), 20px);
+  /* product copy: 16/24 mobile (239:2496) → 20/28 desktop (324:2066) */
+  --md-lead: clamp(16px, calc(16px + 4 * (100vw - 375px) / 1065), 20px);
+  --md-lead-lh: clamp(24px, calc(24px + 4 * (100vw - 375px) / 1065), 28px);
+  /* ingredients link: 18/24 mobile (239:2498) → 20/28 desktop (324:2068) */
+  --md-link: clamp(18px, calc(18px + 2 * (100vw - 375px) / 1065), 20px);
+
+  color: var(--md-ink);
+  font-family: var(--md-body);
+  -webkit-font-smoothing: antialiased;
+
+  /* The theme sets body { letter-spacing: -0.01em } (critical.css), which every
+     element inherits. Figma specifies tracking on only a handful of styles, so
+     reset here and opt in per style below. */
+  letter-spacing: normal;
+}
+
+.md-lp *,
+.md-lp *::before,
+.md-lp *::after { box-sizing: border-box; }
+
+/* margin-block, not margin: a blanket `margin: 0` here outranks single-class
+   rules like .md-lp__banner-text and would kill their `margin-inline: auto`. */
+.md-lp p { margin-block: 0; }
+.md-lp h1, .md-lp h2, .md-lp h3 { margin: 0; font-weight: 600; }
+.md-lp img { display: block; max-width: 100%; }
+
+/* ============================================================
+   Mobile sticky bar — 239:2563
+   ============================================================ */
+.md-lp__bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-overlay, 400);
+  background: #fff;
+  box-shadow:
+    0 0 1px rgba(0, 0, 0, 0.04),
+    0 -1px 1px rgba(0, 0, 0, 0.03),
+    0 -3px 2px rgba(0, 0, 0, 0.02),
+    0 -5px 2px rgba(0, 0, 0, 0.01);
+  padding: 8px 20px calc(8px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Reserves room for the fixed bar between 768 and 1023, where the footer
+   falls back to its desktop padding. Below 768 the footer's own 120px
+   bottom padding does the job, as in Figma. */
+.md-lp__bar-spacer { display: none; }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .md-lp__bar-spacer { display: block; height: calc(109px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* Slid off-screen until "02. The explanation" is reached (md-sticky-bar JS).
+   Covers every width the bar shows at; from 1024 the rail replaces it. */
+@media (max-width: 1023px) {
+  .md-lp__bar { transition: transform var(--duration-default, 0.3s) var(--ease-default, ease); }
+  .md-lp__bar[data-md-bar-hidden] { transform: translateY(100%); box-shadow: none; }
+}
+
+.md-lp__bar-inner { display: flex; flex-direction: column; gap: 8px; }
+
+.md-lp__bar-info { display: flex; flex-direction: column; }
+
+.md-lp__bar-heading {
+  color: #004539;
+  font-family: var(--md-head);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+.md-lp__bar-text {
+  color: #004539;
+  font-family: var(--md-head);
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.md-lp__bar-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 360px;
+  min-height: 52px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--md-accent);
+  color: #fff;
+  font-family: var(--md-head);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color var(--duration-fast, 0.15s) var(--ease-default, ease);
+}
+
+.md-lp__bar-cta:hover { background: #611a34; }
+.md-lp__bar-cta:focus-visible { outline: 2px solid var(--md-ink); outline-offset: 2px; }
+
+/* ---- row wrapper ----
+   Each section renders one row. Band colour and vertical rhythm come
+   from per-section custom properties set in the section's {% style %}. */
+.md-lp__row {
+  background: var(--md-band, transparent);
+  padding-block: var(--md-pad-top, 0px) var(--md-pad-bottom, 0px);
+}
+
+/* ---- full-bleed band behind a block inside the off-centre article column ----
+   box-shadow spreads the colour to the viewport edges; the usual negative
+   margin trick misaligns because this column is not centred. */
+.md-lp__band {
+  background: var(--md-block-band, transparent);
+  box-shadow: 0 0 0 100vmax var(--md-block-band, transparent);
+  clip-path: inset(0 -100vmax);
+  padding-block: var(--md-block-pt, 0px) var(--md-block-pb, 0px);
+}
+
+/* ============================================================
+   Announcement banner
+   324:2007 / 239:2425
+   ============================================================ */
+/* Same gutter + 1184 cap as .md-lp__inner/.md-lp__layout so the banner box
+   lines up with the article grid at every width. Figma draws it 8px wider
+   each side (1200 vs 1184); matching the grid is the intent. */
+.md-lp__banner {
+  background: var(--md-banner-bg, var(--md-ink));
+  padding-block: 8px;
+  padding-inline: var(--md-gutter);
+}
+
+/* 12px, no tracking on mobile (239:2427); 14px + 1px from 768 (324:2009) */
+.md-lp__banner-text {
+  max-width: 1184px;
+  margin: 0 auto;
+  color: var(--md-banner-color, var(--md-paper));
+  font-family: var(--md-body);
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Layout — 768px article + 392px sticky rail (1184 container)
+   324:2015 / 239:2429
+   ============================================================ */
+.md-lp__inner {
+  margin: 0 auto;
+  padding-inline: var(--md-gutter);
+}
+
+/* One column on mobile. From 1024px the second column is reserved for the
+   rail card, which is painted by md-sticky-rail using this same grid so the
+   two line up exactly. */
+/* Capped at the Figma container (324:2015) so the columns resolve to exactly
+   768 + 24 + 392. .md-lp__inner stays uncapped so bands run full width. */
+.md-lp__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--md-col-gap);
+  align-items: start;
+  max-width: 1184px;
+  margin-inline: auto;
+}
+
+.md-lp__article {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* ============================================================
+   Hero — 324:2020 / 239:2430
+   ============================================================ */
+.md-lp__hero { display: flex; flex-direction: column; gap: 16px; }
+
+.md-lp__hero-head { display: flex; flex-direction: column; gap: 12px; }
+
+.md-lp__eyebrow {
+  color: var(--md-accent);
+  font-family: var(--md-body);
+  font-size: var(--md-label);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.md-lp__title {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-weight: 600;
+  font-size: var(--md-h1);
+  line-height: var(--md-h1-lh);
+  letter-spacing: -0.01em;
+  text-transform: capitalize;
+  text-wrap: pretty;
+}
+
+/* 16 below the H1 on mobile (239:2432 gap 16), 12 on desktop where the
+   symptoms sit inside Hero Content's 12 gap (324:2022). */
+.md-lp__pills {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.md-lp__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px 8px 12px;
+  border-radius: 0 0 20px 0;
+  background: var(--md-sage);
+  color: var(--md-ink);
+  font-family: var(--md-body);
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.md-lp__hero-quote {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-size: var(--md-body-size);
+  line-height: var(--md-body-lh);
+}
+
+/* Figma puts 24 between the quote and the image (239:2431 / 324:2032) while
+   the rest of the hero stack uses 16 — the +8 makes up the difference. */
+.md-lp__hero-figure { margin: 8px 0 0; }
+
+.md-lp__hero-image {
+  width: 100%;
+  height: 216px; /* 239:2446 */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* +8 on the article column gap (16 mobile / 24 desktop) gives Figma's
+   24 / 32 between the hero image and the divider. */
+.md-lp__rule {
+  height: 0;
+  margin: 8px 0 0;
+  border: 0;
+  border-top: 1px solid var(--md-rule-soft);
+}
+
+/* ============================================================
+   Article part — label + heading + prose
+   324:2036 / 239:2449
+   ============================================================ */
+.md-lp__part { display: flex; flex-direction: column; gap: 10px; }
+
+.md-lp__part-label {
+  color: var(--md-accent);
+  font-family: var(--md-body);
+  font-size: var(--md-label);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.md-lp__part-body { display: flex; flex-direction: column; gap: 16px; }
+
+/* -0.24px tracking on mobile only (239:2452); desktop H2 has none (324:2039) */
+.md-lp__heading {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-weight: 500;
+  font-size: var(--md-h2);
+  line-height: var(--md-h2-lh);
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.md-lp__prose {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-size: var(--md-body-size);
+  line-height: var(--md-body-lh);
+}
+
+.md-lp__prose p { margin: 0; }
+.md-lp__prose strong { font-weight: 600; }
+.md-lp__prose a { color: var(--md-accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ============================================================
+   Pull quote — 324:2043 / 239:2455
+   ============================================================ */
+.md-lp__quote {
+  margin: 0;
+  padding: 12px 40px 12px 32px;
+  border-left: 4px solid var(--md-accent);
+  border-radius: 0 0 160px 0;
+  background: var(--md-accent-tint);
+  overflow: clip;
+  color: var(--md-accent);
+  font-family: var(--md-head);
+  font-weight: 500;
+  font-size: var(--md-quote);
+  line-height: var(--md-quote-lh);
+}
+
+.md-lp__quote p { margin: 0; }
+
+/* ============================================================
+   Highlight — 324:2053 / 239:2464
+   ============================================================ */
+.md-lp__highlight {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  color: var(--md-accent);
+}
+
+.md-lp__highlight::before {
+  content: '';
+  flex: 0 0 2px;
+  width: 2px;
+  background: var(--md-accent);
+}
+
+.md-lp__highlight-text {
+  font-family: var(--md-head);
+  font-weight: 500;
+  font-size: var(--md-highlight);
+  line-height: 24px;
+  align-self: center;
+}
+
+/* ============================================================
+   Product card — 324:2062 / 239:2471
+   ============================================================ */
+.md-lp__product { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+
+.md-lp__product-copy { display: flex; flex-direction: column; gap: 16px; }
+
+.md-lp__product-lead {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: var(--md-head);
+  font-size: var(--md-lead);
+  line-height: var(--md-lead-lh);
+  color: var(--md-ink);
+}
+
+.md-lp__product-lead p { margin: 0; }
+.md-lp__product-lead strong { font-weight: 600; }
+
+.md-lp__product-link {
+  color: var(--md-accent);
+  font-family: var(--md-head);
+  font-weight: 600;
+  font-size: var(--md-link);
+  line-height: var(--md-lead-lh);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  align-self: flex-start;
+}
+
+.md-lp__product-aside { display: flex; flex-direction: column; gap: 24px; }
+
+/* 20px on mobile (239:2475 → 295px image), 16px from 768 (324:2070 → 351px) */
+.md-lp__card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--md-stone);
+  overflow: clip;
+}
+
+/* height:auto is required — image_tag emits a height attribute whose
+   presentational hint otherwise beats aspect-ratio and stretches the box. */
+.md-lp__card-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 20/24 mobile (239:2477), 24/28 from 768 (324:2072) */
+/* .md-lp prefix outranks the `.md-lp h3 { font-weight: 600 }` reset */
+.md-lp .md-lp__card-title {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.md-lp__specs { margin: 0; }
+
+.md-lp__spec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-top: 1px solid var(--md-rule);
+  font-family: var(--md-body);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.md-lp__spec dt { color: var(--md-muted); }
+.md-lp__spec dd { margin: 0; color: var(--md-ink); text-align: right; }
+
+.md-lp__card-quote {
+  margin: 0;
+  padding: 12px 40px 12px 32px;
+  border-left: 4px solid var(--md-accent);
+  border-radius: 0 0 160px 0;
+  background: var(--md-stone);
+  overflow: clip;
+  color: var(--md-accent);
+  font-family: var(--md-head);
+  font-weight: 500;
+  font-size: var(--md-highlight);
+  line-height: 24px;
+}
+
+.md-lp__card-quote p { margin: 0; }
+
+/* ============================================================
+   Timeline — 324:2095 / 239:2505
+   ============================================================ */
+.md-lp__timeline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.md-lp__step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 24px;
+  border-left: 1px solid var(--md-ink);
+}
+
+.md-lp__timeline > .md-lp__step:last-child { padding-bottom: 12px; }
+
+.md-lp__step-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 6px 16px 6px 8px;
+  border-radius: 0 0 20px 0;
+  background: var(--md-ink);
+  color: #fff;
+  font-family: var(--md-body);
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.md-lp__step-body { display: flex; flex-direction: column; gap: 2px; padding-left: 14px; }
+
+.md-lp__step-title {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.md-lp__step-note {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+/* ============================================================
+   Figure + caption — 324:2115 / 239:2524
+   ============================================================ */
+.md-lp__figure { display: flex; flex-direction: column; gap: 24px; margin: 0; }
+
+.md-lp__figure-image {
+  width: 100%;
+  height: 216px; /* 239:2525 */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.md-lp__figure figcaption,
+.md-lp__caption {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-size: var(--md-body-size);
+  line-height: var(--md-body-lh);
+}
+
+/* ============================================================
+   Final CTA — 324:2119 / 239:2527
+   ============================================================ */
+.md-lp__final { display: flex; flex-direction: column; gap: 12px; padding-bottom: 24px; }
+
+.md-lp__final .md-lp__heading { text-align: center; }
+
+/* One line on mobile — font scales with the viewport so it fits the column */
+@media (max-width: 767px) {
+  .md-lp__final .md-lp__heading {
+    white-space: nowrap;
+    font-size: min(var(--md-h2), 5.4vw);
+  }
+}
+
+.md-lp__final-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.md-lp__final-text,
+.md-lp__final-close {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-size: var(--md-body-size);
+  line-height: 24px;
+  text-align: center;
+}
+
+.md-lp__final-close strong { font-weight: 600; }
+
+.md-lp__cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.md-lp__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 360px;
+  min-height: 52px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--md-accent);
+  color: #fff;
+  font-family: var(--md-head);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color var(--duration-fast, 0.15s) var(--ease-default, ease);
+}
+
+.md-lp__cta:hover { background: #611a34; }
+.md-lp__cta:focus-visible { outline: 2px solid var(--md-ink); outline-offset: 2px; }
+
+.md-lp__proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--md-ink);
+  font-family: var(--md-body);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+}
+
+.md-lp__proof-dot {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ============================================================
+   Sticky rail card — 324:2132 (desktop only)
+
+   Sections are siblings, so the card cannot be position:sticky inside
+   the article grid. Instead it is a fixed overlay that reuses the same
+   inner/grid metrics, so it lands in the reserved second column at every
+   width. md-lp.js drops it out of the way when the footer arrives.
+   ============================================================ */
+.md-lp__rail { display: none; }
+
+.md-lp__rail-fixed {
+  position: fixed;
+  /* Figma sets the card to `sticky top-0` (324:2132), so it pins to the very
+     top of the viewport. md-lp.js reproduces the rest of sticky: it starts
+     level with the hero and stops 24px before the column ends (324:2131's
+     py-24), which a fixed element cannot do on its own. */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky, 300);
+  pointer-events: none;
+}
+
+.md-lp__rail-fixed .md-lp__sticky {
+  grid-column: 2;
+  pointer-events: auto;
+}
+
+/* md-lp.js sets --md-rail-shift so the card parks above the footer
+   instead of riding over it. */
+.md-lp__rail-fixed { transform: translateY(var(--md-rail-shift, 0px)); }
+
+.md-lp__sticky {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--md-rule-soft);
+  border-radius: 12px;
+  background: #fff;
+  overflow: clip;
+}
+
+.md-lp__sticky-head { display: flex; flex-direction: column; gap: 4px; }
+
+.md-lp__sticky-titles { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.md-lp__sticky-title {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+
+.md-lp__sticky-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 100px;
+  background: var(--md-ink);
+  flex: 0 0 4px;
+}
+
+.md-lp__sticky-tagline {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.md-lp__sticky-image {
+  width: 100%;
+  height: 288px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.md-lp__benefits { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+
+.md-lp__benefit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.md-lp__benefit svg { flex: 0 0 20px; }
+
+.md-lp__review {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  background: rgba(246, 239, 223, 0.4);
+}
+
+.md-lp__review-text {
+  color: var(--md-ink);
+  font-family: var(--md-head);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.md-lp__review-author { display: flex; flex-direction: column; gap: 2px; }
+
+.md-lp__review-name-row { display: flex; align-items: center; gap: 5px; }
+
+.md-lp__review-name {
+  color: var(--md-ink);
+  font-family: var(--md-body);
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.012em;
+}
+
+.md-lp__review-verified {
+  opacity: 0.6;
+  color: var(--md-ink);
+  font-family: var(--md-body);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: -0.014em;
+}
+
+/* ============================================================
+   Breakpoints
+   ============================================================ */
+
+/* Tablet portrait — wider gutter, timeline goes 3-up */
+@media (min-width: 768px) {
+  .md-lp { --md-gutter: 40px; }
+
+  /* .md-lp__inner { padding-top: 32px; } */
+
+  .md-lp__hero { gap: 16px; }
+  .md-lp__pills { margin-top: 0; } /* desktop keeps the 12 from hero-head */
+
+  /* 768 × 442 in the article column (324:2034); 768 × 491 for the figure (324:2117) */
+  .md-lp__hero-image { height: auto; aspect-ratio: 768 / 442; }
+  .md-lp__figure-image { height: auto; aspect-ratio: 768 / 491; }
+
+  .md-lp__banner { padding-block: 12px; }
+  .md-lp__banner-text { font-size: 14px; letter-spacing: 1px; }
+
+  .md-lp__card { padding: 16px; }
+  .md-lp__card-title { font-size: 24px; line-height: 28px; }
+  .md-lp__heading { letter-spacing: normal; }
+
+  .md-lp__part { gap: 8px; }
+  .md-lp__part-body { gap: 12px; }
+  .md-lp__prose { gap: 24px; }
+
+  .md-lp__quote { padding: 12px 40px; }
+
+  .md-lp__timeline {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .md-lp__step { padding-bottom: 0; gap: 12px; }
+  .md-lp__timeline > .md-lp__step:last-child { padding-bottom: 0; }
+  .md-lp__step-body { gap: 4px; padding-left: 16px; }
+  .md-lp__step-title { font-size: 20px; line-height: 28px; }
+  .md-lp__step-note { font-size: 16px; line-height: 20px; }
+
+  .md-lp__product {
+    grid-template-columns: minmax(0, 350fr) minmax(0, 383fr);
+    gap: 27px;
+  }
+
+  .md-lp__product-aside { justify-content: space-between; }
+}
+
+/* Laptop — the rail appears, article and rail lock to the Figma ratio */
+@media (min-width: 1024px) {
+  .md-lp { --md-gutter: clamp(40px, 8.9vw, 128px); }
+
+  .md-lp__layout { grid-template-columns: minmax(0, 768fr) minmax(0, 392fr); }
+
+  .md-lp__article { gap: 32px; }
+
+  .md-lp__hero { gap: 0; }
+
+  .md-lp__rail { display: block; }
+
+  /* the rail replaces the mobile bar */
+  .md-lp__bar { display: none; }
+}
+
+@media (max-width: 1023px) {
+  .md-lp__rail-fixed { display: none; }
+}
+
+/* Desktop — container settles at its Figma width */
+@media (min-width: 1440px) {
+  .md-lp { --md-gutter: 128px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-lp__cta,
+  .md-lp__bar,
+  .md-lp__bar-cta { transition: none; }
+}
+
+
+/* ============================================================
+   Footer — .rlp base from lp-collagen.css
+   ============================================================ */
+
+.rlp {
+  container-type: inline-size;
+  font-family: var(--body-font, 'Lost', system-ui, -apple-system, sans-serif);
+  color: var(--color-tier-1-rheal-green, #004539);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+
+  --rlp-green: var(--color-tier-1-rheal-green, #004539);
+  --rlp-green-hover: #00372e;
+  --rlp-chalk: var(--color-tier-1-chalk, #fffcf7);
+  --rlp-stone: var(--color-tier-2-stone, #f6efdf);
+  --rlp-sand: var(--color-tier-2-sand, #ede1c9);
+  --rlp-sage: var(--color-tier-2-sage, #e1e6bd);
+  --rlp-peach: var(--color-tier-2-peach, #f1d0c0);
+  --rlp-plum: var(--color-tier-2-plum, #b7919a);
+  --rlp-clay: var(--color-tier-2-clay, #ba8275);
+
+  --rlp-head: var(--heading-font, 'Grotta', system-ui, -apple-system, sans-serif);
+  --rlp-body: var(--body-font, 'Lost', system-ui, -apple-system, sans-serif);
+}
+
+.rlp *, .rlp *::before, .rlp *::after { box-sizing: border-box; }
+.rlp p { margin: 0; }
+
+
+/* ============================================================
+   Footer — lp-footer section styles (settings baked in)
+   ============================================================ */
+
+.rlp-ftr {
+    background: #004439;
+    padding: 34px clamp(20px, 8.3cqw, 120px) 34px;
+  }
+  .rlp-ftr__inner { display: flex; flex-direction: column; gap: 24px; max-width: 760px; margin: 0 auto; }
+  .rlp-ftr__claims-block { display: flex; flex-direction: column; gap: 24px; word-break: break-word; }
+  .rlp-ftr__eyebrow { font-family: var(--rlp-body); font-size: 16px; line-height: 22px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--rlp-sage); }
+
+  .rlp-ftr__cols { display: flex; gap: 20px; align-items: flex-start; }
+  .rlp-ftr__col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .rlp-ftr__col-head { font-family: var(--rlp-head); font-size: 14px; line-height: 22px; color: var(--rlp-sage); }
+
+  .rlp-ftr__list { counter-reset: rlp-claim; list-style: none; display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0 0 0 8px; color: rgba(254, 253, 249, 0.7); }
+  .rlp-ftr__claim { position: relative; font-family: var(--rlp-head); font-size: 14px; line-height: 20px; letter-spacing: 0.04em; }
+  .rlp-ftr__claim::before {
+    counter-increment: rlp-claim;
+    content: counter(rlp-claim);
+    position: absolute;
+    left: -8px;
+    top: 3px;
+    transform: translateY(-50%);
+    font-family: var(--rlp-body);
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.04em;
+  }
+
+  .rlp-ftr__disclaimer { font-family: var(--rlp-head); font-size: 12px; line-height: 16px; letter-spacing: 0.48px; color: rgba(254, 253, 249, 0.55); word-break: break-word; }
+  .rlp-ftr__rule { height: 0; border: 0; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: 0; }
+  .rlp-ftr__promo { word-break: break-word; letter-spacing: 0.48px; }
+  .rlp-ftr__promo-label { font-family: var(--rlp-head); font-size: 12px; line-height: 16px; color: var(--rlp-sage); }
+  .rlp-ftr__promo-text { font-family: var(--rlp-head); font-size: 10px; line-height: 14px; color: rgba(254, 253, 249, 0.55); }
+  .rlp-ftr__copyright { font-family: var(--rlp-body); font-size: 12px; line-height: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(225, 230, 189, 0.4); }
+
+  @media (max-width: 767px) {
+    .rlp-ftr { padding: 32px 20px 120px; }
+  }
+
+  @container (max-width: 767px) {
+    .rlp-ftr__inner { gap: 24px; }
+    .rlp-ftr__claims-block { gap: 12px; }
+    .rlp-ftr__eyebrow { font-size: 14px; line-height: normal; }
+    .rlp-ftr__cols { flex-direction: column; gap: 12px; }
+    .rlp-ftr__col { width: 100%; }
+    .rlp-ftr__list { gap: 8px; }
+    .rlp-ftr__claim { font-size: 12px; line-height: 16px; }
+    .rlp-ftr__claim::before { font-size: 10px; }
+  }
